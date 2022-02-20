@@ -2,7 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div id="item-container"></div>
+
+@section scripts {
+    <script src="~/app/dist/bundle/Item.js"></script>
+    <script src="~/js/home/index.js" asp-append-version="true"></script>
+}
+
+@*<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+*@

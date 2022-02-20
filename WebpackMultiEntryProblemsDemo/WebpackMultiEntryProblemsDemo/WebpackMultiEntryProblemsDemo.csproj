@@ -1,7 +1,80 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Update="package-lock.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Update="package.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Update="tsconfig.bld.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Update="tsconfig.dts.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Update="tsconfig.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Update="wwwroot\app\dist\bundle\Item.js">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="wwwroot\app\dist\bundle\Layout.js">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="wwwroot\app\dist\bundle\vendors.js">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<TypeScriptCompile Include="wwwroot\app\src\components\itempage\AddToCart\AddToCart.tsx" />
+		<TypeScriptCompile Include="wwwroot\app\src\components\itempage\itempage.ts" />
+		<TypeScriptCompile Include="wwwroot\app\src\components\layoutpage\layoutpage.ts" />
+	</ItemGroup>
+	<ItemGroup>
+		<TypeScriptCompile Remove="wwwroot\app\src\**" />
+		<TypeScriptCompile Remove="node_modules\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Remove="wwwroot\app\src\**" />
+		<None Include="wwwroot\app\src\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="wwwroot\app\src\components\inventory\ball\ball.tsx" />
+	  <None Remove="wwwroot\app\src\components\inventory\hat\hat.tsx" />
+	  <None Remove="wwwroot\app\src\components\itempage\AddToCart\props.ts" />
+	  <None Remove="wwwroot\app\src\components\itempage\AddToCart\state.ts" />
+	  <None Remove="wwwroot\app\src\components\layoutpage\cartCountDisplay\cartCountDisplay.tsx" />
+	  <None Remove="wwwroot\app\src\components\layoutpage\cartCountDisplay\props.ts" />
+	  <None Remove="wwwroot\app\src\components\layoutpage\cartCountDisplay\state.ts" />
+	  <None Remove="wwwroot\app\src\shared\cartTracker\cartCount.ts" />
+	</ItemGroup>
+	<ItemGroup>
+	  <TypeScriptCompile Include="wwwroot\app\src\components\inventory\ball\ball.tsx" />
+	  <TypeScriptCompile Include="wwwroot\app\src\components\inventory\hat\hat.tsx" />
+	  <TypeScriptCompile Include="wwwroot\app\src\components\itempage\AddToCart\props.ts" />
+	  <TypeScriptCompile Include="wwwroot\app\src\components\itempage\AddToCart\state.ts" />
+	  <TypeScriptCompile Include="wwwroot\app\src\components\layoutpage\cartCountDisplay\CartCountDisplay.tsx" />
+	  <TypeScriptCompile Include="wwwroot\app\src\components\layoutpage\cartCountDisplay\props.ts" />
+	  <TypeScriptCompile Include="wwwroot\app\src\components\layoutpage\cartCountDisplay\state.ts" />
+	  <TypeScriptCompile Include="wwwroot\app\src\shared\cartTracker\cartCount.ts" />
+	</ItemGroup>
+
+	<Target Name="NpmCI" Inputs="package.json" Outputs="node_modules/.install-stamp">
+		<Exec Command="npm ci" />
+		<!-- Write the stamp file, so incremental builds work -->
+		<Touch Files="node_modules/.install-stamp" AlwaysCreate="true" />
+	</Target>
+
+	<Target Name="NpmRunBuild" DependsOnTargets="NpmCI" BeforeTargets="BeforeBuild">
+		<Exec Command="npm run dev" Condition="'$(Configuration)'!='Release'" />
+		<Exec Command="npm run prod" Condition="'$(Configuration)'=='Release'" />
+	</Target>
 
 </Project>
