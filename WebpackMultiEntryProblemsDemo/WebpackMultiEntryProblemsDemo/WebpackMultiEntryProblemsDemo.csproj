@@ -27,6 +27,9 @@
 		<Content Update="wwwroot\app\dist\bundle\Layout.js">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Update="wwwroot\app\dist\bundle\runtime.js">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Update="wwwroot\app\dist\bundle\vendors.js">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>

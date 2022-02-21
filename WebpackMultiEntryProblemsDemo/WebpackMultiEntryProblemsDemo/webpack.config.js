@@ -19,7 +19,7 @@ module.exports = (env, argv) => {
             }
         },
         optimization: {
-            //runtimeChunk: "single",
+            runtimeChunk: "single",
             splitChunks: {
                 chunks: "all",
                 cacheGroups: {
