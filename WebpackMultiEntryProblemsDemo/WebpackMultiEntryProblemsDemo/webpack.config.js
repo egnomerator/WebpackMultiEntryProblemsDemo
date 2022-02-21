@@ -19,13 +19,19 @@ module.exports = (env, argv) => {
             }
         },
         optimization: {
-            //runtimeChunk: "single",
+            runtimeChunk: "single",
             splitChunks: {
                 chunks: "all",
                 cacheGroups: {
                     vendors: {
                         test: /[\\/]node_modules[\\/]/,
                         name: "vendors"
+                    },
+                    common: {
+                        test: /[\\/]wwwroot[\\/]app[\\/]src[\\/]/,
+                        minChunks: 2,
+                        minSize: 0,
+                        name: "common"
                     }
                 }
             }
