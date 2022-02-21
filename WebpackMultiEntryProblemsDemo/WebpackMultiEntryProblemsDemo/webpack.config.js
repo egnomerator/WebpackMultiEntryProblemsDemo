@@ -26,6 +26,12 @@ module.exports = (env, argv) => {
                     vendors: {
                         test: /[\\/]node_modules[\\/]/,
                         name: "vendors"
+                    },
+                    common: {
+                        test: /[\\/]wwwroot[\\/]app[\\/]src[\\/]/,
+                        minChunks: 2,
+                        minSize: 0,
+                        name: "common"
                     }
                 }
             }
