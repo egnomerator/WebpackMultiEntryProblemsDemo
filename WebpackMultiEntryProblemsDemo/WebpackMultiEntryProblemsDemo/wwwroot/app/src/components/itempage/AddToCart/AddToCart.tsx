@@ -31,12 +31,12 @@ export class AddToCart extends React.Component<AddToCartProps, AddToCartState> {
                     ? <div><span>no items</span></div>
                     : this.props.items.map((item, i) =>
                         <div key={ i }>
-                            { item }
+                            {item}{" "}
                             <button onClick={this.updateCartCount}>Add To Cart</button>
                         </div>)
             }
             <p></p>
-            <div>{this.state.cartCount}</div>
+            <div>Cart: {this.state.cartCount}</div>
         </div>
     }
 }

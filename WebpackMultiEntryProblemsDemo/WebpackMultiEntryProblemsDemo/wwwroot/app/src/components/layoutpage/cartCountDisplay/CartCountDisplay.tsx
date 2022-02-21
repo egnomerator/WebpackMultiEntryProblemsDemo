@@ -33,6 +33,6 @@ export class CartCountDisplay extends React.Component<CartCountDisplayProps, Car
     }
 
     render() {
-        return <span>{this.state.count}</span>
+        return <span>Cart: {this.state.count}</span>
     }
 }
