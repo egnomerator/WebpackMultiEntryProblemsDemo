@@ -21,6 +21,9 @@
 		<Content Update="tsconfig.json">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Content>
+		<Content Update="wwwroot\app\dist\bundle\common.js">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Update="wwwroot\app\dist\bundle\Item.js">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
